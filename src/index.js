@@ -1,4 +1,5 @@
 import { compose, pipe } from "lodash/fp";
+import { produce } from "immer";
 
 //* without functional programing
 let input = "     Kaveh Karami      ";
@@ -17,3 +18,30 @@ let toLowerCase = (str) => str.toLowerCase();
 let transform = pipe(trim, toLowerCase, wrap("span"));
 let lodashResult = transform(input);
 console.log(lodashResult);
+
+const person = {
+  forename: "kaveh",
+  surname: "karami",
+  address: {
+    city: "arak",
+    country: "iran",
+  },
+};
+const updated = {
+  ...person,
+  forename: "kasra",
+  address: { ...person.address, city: "tehran" },
+};
+
+console.log(person);
+console.log(updated);
+
+let book = { title: "Harry Potter" };
+function publish(book) {
+  return produce(book, (draftBook) => {
+    draftBook.isPublish = true;
+  });
+}
+const bookUpdated = publish(book);
+console.log(book);
+console.log(bookUpdated);
