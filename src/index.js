@@ -1,6 +1,6 @@
 // import "./Functional/index";
 import store from "./store";
-import { bugAdded, bugRemoved } from "./actions";
+import { bugAdded, bugRemoved, bugResolved } from "./actions";
 
 let unsubscribe = store.subscribe(() => {
   console.log(store.getState());
@@ -8,6 +8,6 @@ let unsubscribe = store.subscribe(() => {
 
 store.dispatch(bugAdded("bug1"));
 store.dispatch(bugAdded("bug2"));
-store.dispatch(bugRemoved(2));
+store.dispatch(bugResolved(2));
 
 unsubscribe();

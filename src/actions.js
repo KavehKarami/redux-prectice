@@ -1,5 +1,5 @@
 // this is our action creators
-import { BUG_ADDED, BUG_REMOVED } from "./actionTypes";
+import { BUG_ADDED, BUG_REMOVED, BUG_RESOLVED } from "./actionTypes";
 
 export const bugAdded = (description) => ({
   type: BUG_ADDED,
@@ -16,3 +16,10 @@ export function bugRemoved(id) {
     },
   };
 }
+
+export const bugResolved = (id) => ({
+  type: BUG_RESOLVED,
+  payload: {
+    id,
+  },
+});
