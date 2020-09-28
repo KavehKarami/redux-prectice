@@ -1,12 +1,18 @@
 // import "./Functional/index";
 import configureStore from "./store/configureStore";
 import { bugAdded, bugRemoved, bugResolved } from "./store/bugs";
+import { projectAdded, projectRemoved } from "./store/projects";
 
 const store = configureStore();
 
 let unsubscribe = store.subscribe(() => {
   console.log(store.getState());
 });
+
+store.dispatch(projectAdded({ name: "Kaveh" }));
+store.dispatch(projectAdded({ name: "Kasra" }));
+store.dispatch(projectAdded({ name: "alaki" }));
+store.dispatch(projectRemoved({ id: 3 }));
 
 store.dispatch(bugAdded({ description: "bug1" }));
 store.dispatch(bugAdded({ description: "bug2" }));
