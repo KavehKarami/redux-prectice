@@ -1,6 +1,8 @@
 // import "./Functional/index";
-import store from "./store";
-import { bugAdded, bugRemoved, bugResolved } from "./actions";
+import configureStore from "./store/configureStore";
+import { bugAdded, bugRemoved, bugResolved } from "./store/bugs";
+
+const store = configureStore();
 
 let unsubscribe = store.subscribe(() => {
   console.log(store.getState());
