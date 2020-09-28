@@ -1,6 +1,11 @@
 // import "./Functional/index";
 import configureStore from "./store/configureStore";
-import { bugAdded, bugRemoved, bugResolved } from "./store/bugs";
+import {
+  bugAdded,
+  bugRemoved,
+  bugResolved,
+  getUnresolvedBugs,
+} from "./store/bugs";
 import { projectAdded, projectRemoved } from "./store/projects";
 
 const store = configureStore();
@@ -17,6 +22,9 @@ store.dispatch(projectRemoved({ id: 3 }));
 store.dispatch(bugAdded({ description: "bug1" }));
 store.dispatch(bugAdded({ description: "bug2" }));
 store.dispatch(bugResolved({ id: 2 }));
+
+const unresolvedBugs = getUnresolvedBugs(store.getState());
+console.log(unresolvedBugs);
 
 unsubscribe();
 

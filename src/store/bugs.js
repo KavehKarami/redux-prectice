@@ -28,6 +28,10 @@ const slice = createSlice({
 export const { bugAdded, bugRemoved, bugResolved } = slice.actions;
 export default slice.reducer;
 
+export const getUnresolvedBugs = (state) => {
+  return state.entities.bugs.filter((bug) => !bug.resolved);
+};
+
 /* ------------------------ a way with redux toolkit ------------------------ */
 
 // import { createAction, createReducer } from "@reduxjs/toolkit";
