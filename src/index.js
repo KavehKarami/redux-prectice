@@ -5,14 +5,20 @@ import {
   bugRemoved,
   bugResolved,
   getUnresolvedBugs,
+  bugAssignedToUser,
+  getBugsByUser,
 } from "./store/bugs";
 import { projectAdded, projectRemoved } from "./store/projects";
+import { userAdded } from "./store/users";
 
 const store = configureStore();
 
 let unsubscribe = store.subscribe(() => {
   console.log(store.getState());
 });
+
+store.dispatch(userAdded({ name: "Kaveh" }));
+store.dispatch(userAdded({ name: "Kasra" }));
 
 store.dispatch(projectAdded({ name: "Kaveh" }));
 store.dispatch(projectAdded({ name: "Kasra" }));
@@ -23,8 +29,13 @@ store.dispatch(bugAdded({ description: "bug1" }));
 store.dispatch(bugAdded({ description: "bug2" }));
 store.dispatch(bugResolved({ id: 2 }));
 
+store.dispatch(bugAssignedToUser({ userId: 1, bugId: 1 }));
+
 const unresolvedBugs = getUnresolvedBugs(store.getState());
 console.log(unresolvedBugs);
+
+const userAssignedBugs = getBugsByUser(1)(store.getState());
+console.log(userAssignedBugs);
 
 unsubscribe();
 
