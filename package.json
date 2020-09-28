@@ -15,6 +15,7 @@
     "webpack-dev-server": "3.10.3"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.4.0",
     "immer": "^7.0.9",
     "lodash": "^4.17.20",
     "redux": "^4.0.5",
