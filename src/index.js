@@ -22,6 +22,11 @@ store.dispatch((dispatch, getState) => {
   dispatch({ type: "bugsRecived", bugs: [1, 2, 3, 4] });
 });
 
+store.dispatch({
+  type: "error",
+  payload: { message: "there is some error in your code" },
+});
+
 // store.dispatch(userAdded({ name: "Kaveh" }));
 // store.dispatch(userAdded({ name: "Kasra" }));
 
