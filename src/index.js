@@ -1,15 +1,15 @@
 // import "./Functional/index";
 import configureStore from "./store/configureStore";
-import {
-  bugAdded,
-  bugRemoved,
-  bugResolved,
-  getUnresolvedBugs,
-  bugAssignedToUser,
-  getBugsByUser,
-} from "./store/bugs";
-import { projectAdded, projectRemoved } from "./store/projects";
-import { userAdded } from "./store/users";
+// import {
+//   bugAdded,
+//   bugRemoved,
+//   bugResolved,
+//   getUnresolvedBugs,
+//   bugAssignedToUser,
+//   getBugsByUser,
+// } from "./store/bugs";
+// import { projectAdded, projectRemoved } from "./store/projects";
+// import { userAdded } from "./store/users";
 
 const store = configureStore();
 
@@ -17,25 +17,30 @@ let unsubscribe = store.subscribe(() => {
   console.log(store.getState());
 });
 
-store.dispatch(userAdded({ name: "Kaveh" }));
-store.dispatch(userAdded({ name: "Kasra" }));
+// using thunk middleware to handle dispatching a function
+store.dispatch((dispatch, getState) => {
+  dispatch({ type: "bugsRecived", bugs: [1, 2, 3, 4] });
+});
 
-store.dispatch(projectAdded({ name: "Kaveh" }));
-store.dispatch(projectAdded({ name: "Kasra" }));
-store.dispatch(projectAdded({ name: "alaki" }));
-store.dispatch(projectRemoved({ id: 3 }));
+// store.dispatch(userAdded({ name: "Kaveh" }));
+// store.dispatch(userAdded({ name: "Kasra" }));
 
-store.dispatch(bugAdded({ description: "bug1" }));
-store.dispatch(bugAdded({ description: "bug2" }));
-store.dispatch(bugResolved({ id: 2 }));
+// store.dispatch(projectAdded({ name: "Kaveh" }));
+// store.dispatch(projectAdded({ name: "Kasra" }));
+// store.dispatch(projectAdded({ name: "alaki" }));
+// store.dispatch(projectRemoved({ id: 3 }));
 
-store.dispatch(bugAssignedToUser({ userId: 1, bugId: 1 }));
+// store.dispatch(bugAdded({ description: "bug1" }));
+// store.dispatch(bugAdded({ description: "bug2" }));
+// store.dispatch(bugResolved({ id: 2 }));
 
-const unresolvedBugs = getUnresolvedBugs(store.getState());
-console.log(unresolvedBugs);
+// store.dispatch(bugAssignedToUser({ userId: 1, bugId: 1 }));
 
-const userAssignedBugs = getBugsByUser(1)(store.getState());
-console.log(userAssignedBugs);
+// const unresolvedBugs = getUnresolvedBugs(store.getState());
+// console.log(unresolvedBugs);
+
+// const userAssignedBugs = getBugsByUser(1)(store.getState());
+// console.log(userAssignedBugs);
 
 unsubscribe();
 
