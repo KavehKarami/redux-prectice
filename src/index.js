@@ -10,6 +10,6 @@ let unsubscribe = store.subscribe(() => {
 // UI layer
 store.dispatch(loadBugs());
 
-console.log(store.getState());
+setTimeout(() => store.dispatch(loadBugs()), 2000);
 
 unsubscribe();

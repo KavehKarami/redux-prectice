@@ -12,7 +12,7 @@ const api = ({ dispatch }) => (next) => async (action) => {
 
   try {
     const response = await Axios({
-      baseURL: "http://localhost:8001/api",
+      baseURL: "http://localhost:8000/api",
       url,
       method,
       data,
