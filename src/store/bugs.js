@@ -98,6 +98,17 @@ export const loadBugs = () => (dispatch, getState) => {
   );
 };
 
+export const addBug = (bug) => {
+  return apiCallBegan({
+    url,
+    method: "POST",
+    data: bug,
+    onSuccess: bugAdded.type,
+    onStart: bugsRequested.type,
+    onError: bugsRequestFailed.type,
+  });
+};
+
 /* ------------------------ a way with redux toolkit ------------------------ */
 
 // import { createAction, createReducer } from "@reduxjs/toolkit";

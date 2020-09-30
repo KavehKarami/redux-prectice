@@ -1,5 +1,5 @@
 import configureStore from "./store/configureStore";
-import { loadBugs } from "./store/bugs";
+import { loadBugs, addBug } from "./store/bugs";
 
 const store = configureStore();
 
@@ -9,6 +9,7 @@ let unsubscribe = store.subscribe(() => {
 
 // UI layer
 store.dispatch(loadBugs());
+store.dispatch(addBug({ description: "online test" }));
 
 setTimeout(() => store.dispatch(loadBugs()), 2000);
 
