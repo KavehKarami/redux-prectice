@@ -36,14 +36,16 @@ const slice = createSlice({
     },
 
     bugResolved: (bugs, action) => {
-      const index = bugs.list.findIndex((bug) => bug.id === action.payload.id);
-      bugs[index].resolved = true;
+      const index = bugs.list.findIndex(
+        (bug) => bug._id === action.payload._id
+      );
+      bugs[index] = action.payload;
     },
 
     bugAssignedToUser: (bugs, action) => {
-      const { bugId, userId } = action.payload;
-      const index = bugs.list.findIndex((bug) => bug.id === bugId);
-      bugs[index].userId = userId;
+      const { _id: bugId } = action.payload;
+      const index = bugs.list.findIndex((bug) => bug._id === bugId);
+      bugs[index] = action.payload;
     },
   },
 });
@@ -103,6 +105,26 @@ export const addBug = (bug) => {
     onError: bugsRequestFailed.type,
   });
 };
+
+export const resolvedBug = (id) =>
+  apiCallBegan({
+    url: url + "/" + id,
+    method: "PATCH",
+    data: { resolved: true },
+    onSuccess: bugResolved.type,
+    onStart: bugsRequested.type,
+    onError: bugsRequestFailed.type,
+  });
+
+export const assignedBug = (userId, bugId) =>
+  apiCallBegan({
+    url: url + "/" + bugId,
+    method: "PATCH",
+    data: { userId: userId },
+    onSuccess: bugAssignedToUser.type,
+    onStart: bugsRequested.type,
+    onError: bugsRequestFailed.type,
+  });
 
 /* ------------------------ a way with redux toolkit ------------------------ */
 
