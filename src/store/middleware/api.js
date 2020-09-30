@@ -4,12 +4,15 @@ import { apiCallBegan, apiCallSuccess, apiCallFailed } from "./../api";
 const api = ({ dispatch }) => (next) => async (action) => {
   if (action.type !== apiCallBegan.type) return next(action);
 
+  const { url, method, data, onSuccess, onError, onStart } = action.payload;
+
+  if (onStart) dispatch({ type: onStart });
+
   next(action);
-  const { url, method, data, onSuccess, onError } = action.payload;
 
   try {
     const response = await Axios({
-      baseURL: "http://localhost:8000/api",
+      baseURL: "http://localhost:8001/api",
       url,
       method,
       data,

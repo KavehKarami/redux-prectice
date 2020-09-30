@@ -13,8 +13,17 @@ const slice = createSlice({
   reducers: {
     // (action creator & action type) : function(state,action)
 
+    bugsRequested: (bugs, action) => {
+      bugs.loading = true;
+    },
+
     bugsReceived: (bugs, action) => {
       bugs.list = action.payload;
+      bugs.loading = false;
+    },
+
+    bugsRequestFailed: (bugs, action) => {
+      bugs.loading = false;
     },
 
     bugAdded: (bugs, action) => {
@@ -48,6 +57,8 @@ export const {
   bugResolved,
   bugAssignedToUser,
   bugsReceived,
+  bugsRequested,
+  bugsRequestFailed,
 } = slice.actions;
 export default slice.reducer;
 
@@ -69,7 +80,12 @@ export const getBugsByUser = (userId) =>
 // Action Creators
 const url = "/bugs-api";
 export const loadBugs = () =>
-  apiCallBegan({ url, onSuccess: bugsReceived.type });
+  apiCallBegan({
+    url,
+    onSuccess: bugsReceived.type,
+    onStart: bugsRequested.type,
+    onError: bugsRequestFailed.type,
+  });
 
 /* ------------------------ a way with redux toolkit ------------------------ */
 
