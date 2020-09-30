@@ -1,5 +1,5 @@
 import configureStore from "./store/configureStore";
-import { apiCallBegan } from "./store/api";
+import { loadBugs } from "./store/bugs";
 
 const store = configureStore();
 
@@ -7,7 +7,8 @@ let unsubscribe = store.subscribe(() => {
   console.log(store.getState());
 });
 
-store.dispatch(apiCallBegan({ url: "/bugs-api" }));
+// UI layer
+store.dispatch(loadBugs());
 
 console.log(store.getState());
 
