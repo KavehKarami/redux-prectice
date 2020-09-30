@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { apiCallBegan } from "./api";
 
-let lastId = 0;
 const slice = createSlice({
   name: "bugs",
   initialState: {
@@ -29,11 +28,7 @@ const slice = createSlice({
     },
 
     bugAdded: (bugs, action) => {
-      bugs.list.push({
-        id: ++lastId,
-        description: action.payload.description,
-        resolved: false,
-      });
+      bugs.list.push(action.payload);
     },
 
     bugRemoved: (bugs, action) => {
