@@ -50,7 +50,7 @@ const slice = createSlice({
   },
 });
 
-export const {
+const {
   bugAdded,
   bugRemoved,
   bugResolved,
