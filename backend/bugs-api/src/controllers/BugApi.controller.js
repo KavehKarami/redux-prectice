@@ -20,11 +20,8 @@ class BugController extends Controller {
   }
   async updateBug(req, res) {
     const { id } = req.params;
-    const { userId, description, resolved } = req.body;
     await BugSchema.findByIdAndUpdate(id, {
-      userId,
-      description,
-      resolved,
+      ...req.body,
     });
     const updatedBug = await BugSchema.findById(id);
     res.json(updatedBug);

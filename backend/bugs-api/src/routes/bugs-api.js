@@ -8,6 +8,6 @@ router
   .route("/:id")
   .get(BugController.getBugById)
   .delete(BugController.deleteBug)
-  .put(BugController.updateBug);
+  .patch(BugController.updateBug);
 
 module.exports = router;
