@@ -39,13 +39,13 @@ const slice = createSlice({
       const index = bugs.list.findIndex(
         (bug) => bug._id === action.payload._id
       );
-      bugs[index] = action.payload;
+      bugs.list[index] = action.payload;
     },
 
     bugAssignedToUser: (bugs, action) => {
       const { _id: bugId } = action.payload;
       const index = bugs.list.findIndex((bug) => bug._id === bugId);
-      bugs[index] = action.payload;
+      bugs.list[index] = action.payload;
     },
   },
 });
@@ -77,7 +77,7 @@ export const getBugsByUser = (userId) =>
   );
 
 // Action Creators
-const url = "/bugs-api";
+const url = "/bugs";
 export const loadBugs = () => (dispatch, getState) => {
   const { lastFetch } = getState().entities.bugs;
 

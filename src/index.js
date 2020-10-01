@@ -10,7 +10,8 @@ let unsubscribe = store.subscribe(() => {
 // UI layer
 store.dispatch(loadBugs());
 // store.dispatch(addBug({ description: "online test" }));
-store.dispatch(assignedBug(12, "5f7331cd2eb39239a4c04703"));
+store.dispatch(assignedBug(12, "5f75961a5968ea35c0edf351"));
+// store.dispatch(resolvedBug("5f75961a5968ea35c0edf351"));
 
 setTimeout(() => store.dispatch(loadBugs()), 2000);
 

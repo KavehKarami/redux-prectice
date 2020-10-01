@@ -7,4 +7,4 @@ const bugApiModel = Schema({
   resolved: { type: Boolean, default: false },
 });
 
-module.exports = mongoose.model("bugs-api", bugApiModel);
+module.exports = mongoose.model("bugs", bugApiModel);

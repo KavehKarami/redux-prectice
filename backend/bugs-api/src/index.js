@@ -49,7 +49,7 @@ class Application {
   }
 
   useRoutes() {
-    app.use("/api/bugs-api", require("./routes/bugs-api"));
+    app.use("/api/bugs", require("./routes/bugs"));
   }
 }
 

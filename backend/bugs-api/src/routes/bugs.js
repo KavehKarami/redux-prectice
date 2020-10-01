@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const BugController = require("./../controllers/BugApi.controller");
+const BugController = require("../controllers/BugApi.controller");
 
 router.route("/").get(BugController.getAllBugs).post(BugController.postBug);
 
